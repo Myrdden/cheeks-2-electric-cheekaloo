@@ -8,7 +8,6 @@ class AppController < Sinatra::Base
     }
     ticketmaster_client = Ticketmaster.client(apikey: ENV['TICKETMASTER-API-KEY'])
     response = ticketmaster_client.search_events(params: params)
-    binding.pry
-    json EventSerializer.new(Event.all)
+    TicketmasterSerializer.json(response.results)
   end
 end
