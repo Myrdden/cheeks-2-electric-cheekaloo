@@ -1,4 +1,3 @@
-require './cheeks_in_seats'
+require_relative './cheeks_in_seats'
 
-use DummyController
-run LastController
+run AppController
