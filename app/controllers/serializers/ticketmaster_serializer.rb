@@ -5,7 +5,7 @@ class TicketmasterSerializer
       obj = {
         name: result.data['name'],
         url: result.data['url'],
-        genre: result.data['classifications'][0]['genre']['name']
+        genre: result.data['classifications'][0]['segment']['name']
       }
       result_venue = result.venues.first.data
       obj[:venue] = {
