@@ -1,3 +1,3 @@
-require_relative './cheeks_in_seats'
+require './cheeks_in_seats'
 
 run AppController
