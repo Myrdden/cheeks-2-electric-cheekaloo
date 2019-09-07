@@ -9,6 +9,4 @@ ENV['EVENTBRITE-API-KEY'] = SECRET_EVENTBRITE
 
 Bundler.require :default, ENV['SINATRA_ENV']
 
-
-
 require_all './app'

@@ -4,17 +4,17 @@ class EventbriteService
     event_info
   end
 
-  # def venues
-  #   venue_info
-  # end
-  #
-  # def tickets
-  #   ticket_info
-  # end
-  #
-  # def genre
-  #   genre_info
-  # end
+  def venues
+    venue_info
+  end
+
+  def tickets
+    ticket_info
+  end
+
+  def genre
+    genre_info
+  end
 
   private
   def event_info

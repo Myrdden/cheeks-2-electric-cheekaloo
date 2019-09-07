@@ -8,3 +8,7 @@ gem 'pry'
 gem 'shotgun'
 gem 'eventbrite'
 gem 'faraday'
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+end
