@@ -10,6 +10,6 @@ class AppController < Sinatra::Base
     # response = ticketmaster_client.search_events(params: params)
     # TicketmasterSerializer.json(response.results)
 
-    EventbriteSerializer.json(response.results)
+    EventbriteSerializer.json
   end
 end

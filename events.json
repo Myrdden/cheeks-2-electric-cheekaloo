@@ -4,8 +4,6 @@
         "page_number": 1,
         "page_size": 50,
         "page_count": 200,
-        "has_more_items": true
-    },
     "events": [
         {
             "name": {

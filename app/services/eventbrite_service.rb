@@ -5,7 +5,7 @@ class EventbriteService
   end
 
   def venues
-    venue_info
+    venue_info  
   end
 
   def tickets

@@ -21,7 +21,6 @@ class TicketmasterSerializer
         time: dates['start']['localTime'],
         status: dates['status']['code']
       }
-
       json_array << obj
     end
 
