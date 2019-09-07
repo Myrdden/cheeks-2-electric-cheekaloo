@@ -25,6 +25,12 @@ class EventbriteSerializer
   end
 
   private
+  attr_reader :service,
+              :service_events,
+              :service_venues,
+              :service_tickets,
+              :service_genres
+
   def service
     @_service ||= EventbriteService.new
   end
@@ -43,5 +49,6 @@ class EventbriteSerializer
 
   def service_genres
     @_service_genres ||= service.genres
+  end
   end
 end
