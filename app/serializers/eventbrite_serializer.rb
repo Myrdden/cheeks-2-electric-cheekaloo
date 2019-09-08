@@ -1,5 +1,7 @@
 class EventbriteSerializer
 
+
+
   def self.json(event_info, ticket_info, venue_info, genre_info)
     json_array = []
     service_events.each do |event|
