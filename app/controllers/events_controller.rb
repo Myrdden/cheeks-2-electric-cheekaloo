@@ -9,13 +9,14 @@ class EventsController < Sinatra::Base
     # ticketmaster_client = Ticketmaster.client(apikey: ENV['TICKETMASTER-API-KEY'])
     # response = ticketmaster_client.search_events(params: params)
     # TicketmasterSerializer.json(response.results)
-
-    service = EventbriteService.new(connection)
+    # connection =
+    service = EventbriteService.new
     # event_data = service.get('events/search') do |req|
     #   req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
     # end
     event_info = service.event_data
     ticket_info = service.ticket_data
+    binding.pry
     venue_info = service.venue_data
     genre_info = service.genre_data
     # ticket_data = service.get("events/#{event_info[:id]}") do |req|
@@ -32,7 +33,6 @@ class EventsController < Sinatra::Base
     #   req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
     # end
     # genre_info = JSON.parse(genre_data.body, symbolize_names: true)[:categories]
-    binding.pry
     EventbriteSerializer.json(event_info, ticket_info, venue_info, genre_info)
   end
 end
