@@ -7,6 +7,7 @@ class EventbriteService
   def event_data
     resp = @connection.get('events/search/') do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
+      req.params['categories'] = '105'
     end
     JSON.parse(resp.body, symbolize_names: true)[:events]
   end
@@ -27,13 +28,12 @@ class EventbriteService
       req.params['expand'] = "venue"
     end
     JSON.parse(resp.body, symbolize_names: true)[:venue]
-    # binding.pry
   end
 
-  def genre_data
-    resp = @connection.get("categories/105/") do |req|
-      req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
-    end
-    JSON.parse(resp.body, symbolize_names: true)[:id]
-  end
+  # def genre_data
+  #   resp = @connection.get("categories/105/") do |req|
+  #     req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
+  #   end
+  #   JSON.parse(resp.body, symbolize_names: true)[:id]
+  # end
 end

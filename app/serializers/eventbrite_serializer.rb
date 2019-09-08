@@ -1,13 +1,26 @@
 class EventbriteSerializer
 
-  def self.json(theatre_events, ticket_info, venue_info)
+  def self.json(event_info, ticket_info, venue_info)
+    # binding.pry
     json_array = []
-    theatre_events.each do |event|
+    subcategory = event_info.map do |event|
+      if event[:subcategory_id] == "5001"
+        'Theatre'
+      elsif event[:subcategory_id] == "5002"
+        'Musical'
+      elsif event[:subcategory_id] == "5003"
+        'Ballet'
+      else
+        'Arts'
+      end
+    end
+    event_info.each do |event|
       obj = {
         name: event[:name][:text],
         url: event[:url],
         date: event[:start][:local].to_datetime,
-        status: event[:status]
+        status: event[:status],
+        genre: subcategory
       }
       obj[:venue] = {
         name: venue_info[:name],
