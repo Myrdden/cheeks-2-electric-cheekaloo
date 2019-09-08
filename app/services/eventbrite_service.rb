@@ -27,6 +27,7 @@ class EventbriteService
       req.params['expand'] = "venue"
     end
     JSON.parse(resp.body, symbolize_names: true)[:venue]
+    # binding.pry
   end
 
   def genre_data

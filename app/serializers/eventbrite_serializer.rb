@@ -1,8 +1,8 @@
 class EventbriteSerializer
 
-  def self.json(event_info, ticket_info, venue_info, genre_info)
+  def self.json(theatre_events, ticket_info, venue_info)
     json_array = []
-    event_info.each do |event|
+    theatre_events.each do |event|
       obj = {
         name: event[:name][:text],
         url: event[:url],
@@ -17,6 +17,13 @@ class EventbriteSerializer
         country: venue_info[:address][:country],
         zip: venue_info[:address][:postal_code]
       }
+      if ticket_info != nil
+        obj[:ticket] = {
+          event[:maxPrice] => ticket_info
+        }
+      else
+        'FREE'
+      end
       json_array << obj
     end
     json_array.to_json
