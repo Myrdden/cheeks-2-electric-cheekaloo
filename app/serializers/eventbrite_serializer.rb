@@ -6,8 +6,6 @@ class EventbriteSerializer
       obj = {
         name: event[:name][:text],
         url: event[:url],
-        date: event[:start][:local].to_datetime,
-        status: event[:status],
       }
       if event[:subcategory_id] == '5001'
         obj[:genre] = 'Theatre'
@@ -31,6 +29,11 @@ class EventbriteSerializer
       else
         obj[:maxPrice] = "Click link to find out more"
       end
+      obj[:date] = {
+        date: event[:start][:local].to_date,
+        time: event[:start][:local].to_time,
+        status: event[:status]
+      }
       json_array << obj
     end
     json_array.to_json
