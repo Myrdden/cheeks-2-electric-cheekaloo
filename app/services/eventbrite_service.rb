@@ -31,9 +31,9 @@ class EventbriteService
   end
 
   def genre_data
-    resp = @connection.get("categories/") do |req|
+    resp = @connection.get("subcategories/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
     end
-    JSON.parse(resp.body, symbolize_names: true)[:categories]
+    JSON.parse(resp.body, symbolize_names: true)[:subcategories]
   end
 end
