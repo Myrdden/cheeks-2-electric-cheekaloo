@@ -34,7 +34,6 @@ class EventbriteService
     resp = @connection.get("categories/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
     end
-    binding.pry
-    JSON.parse(resp.body, symbolize_names: true)
+    JSON.parse(resp.body, symbolize_names: true)[:categories]
   end
 end

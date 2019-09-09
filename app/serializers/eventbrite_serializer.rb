@@ -36,7 +36,15 @@ class EventbriteSerializer
     json_array.to_json
   end
 
-  def self.genres(event_info)
-    binding.pry
+  def self.genres(genre_info)
+    json_genres = []
+    genre_info.each do |genre|
+      obj = {
+        id: genre[:id],
+        name: genre[:name]
+      }
+    json_genres << obj
+    end
+    json_genres.to_json
   end
 end
