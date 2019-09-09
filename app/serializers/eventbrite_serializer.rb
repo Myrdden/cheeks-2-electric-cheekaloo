@@ -37,6 +37,6 @@ class EventbriteSerializer
   end
 
   def self.genres(event_info)
-
+    binding.pry
   end
 end
