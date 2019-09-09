@@ -18,7 +18,7 @@ class EventbriteService
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
       req.params['expand'] = "ticket_classes"
     end
-    JSON.parse(resp.body, symbolize_names: true)[:ticket_classes][0][:actual_cost]
+    JSON.parse(resp.body, symbolize_names: true)[:ticket_classes][0][:cost]
   end
 
   def venue_data

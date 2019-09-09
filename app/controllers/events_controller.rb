@@ -11,14 +11,10 @@ class EventsController < Sinatra::Base
     # TicketmasterSerializer.json(response.results)
 
     service = EventbriteService.new
-    # genre_info = service.genre_data
     event_info = service.event_data
     ticket_info = service.ticket_data
     venue_info = service.venue_data
     # binding.pry
-    # theatre_events = event_info.find_all do |event|
-    #   event[:category_id] == genre_info
-    # end
     EventbriteSerializer.json(event_info, ticket_info, venue_info)
     # binding.pry
   end
