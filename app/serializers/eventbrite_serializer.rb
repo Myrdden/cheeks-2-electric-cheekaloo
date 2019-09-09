@@ -17,7 +17,6 @@ class EventbriteSerializer
         country: venue_info[:address][:country],
         zip: venue_info[:address][:postal_code]
       }
-      # binding.pry
       if event[:subcategory_id] == '5001'
         obj[:genre] = 'Theatre'
       elsif event[:subcategory_id] == '5002'

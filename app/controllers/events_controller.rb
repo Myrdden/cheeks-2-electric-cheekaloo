@@ -14,8 +14,6 @@ class EventsController < Sinatra::Base
     event_info = service.event_data
     ticket_info = service.ticket_data
     venue_info = service.venue_data
-    # binding.pry
     EventbriteSerializer.json(event_info, ticket_info, venue_info)
-    # binding.pry
   end
 end
