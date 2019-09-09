@@ -35,4 +35,8 @@ class EventbriteSerializer
     end
     json_array.to_json
   end
+
+  def self.genres(event_info)
+
+  end
 end

@@ -16,4 +16,10 @@ class EventsController < Sinatra::Base
     venue_info = service.venue_data
     EventbriteSerializer.json(event_info, ticket_info, venue_info)
   end
+
+  get '/api/v1/genres' do
+    service = EventbriteService.new
+    event_info = service.event_data
+    EventbriteSerializer.genres(event_info)
+  end
 end
