@@ -20,7 +20,6 @@ class EventsController < Sinatra::Base
   get '/api/v1/genres' do
     service = EventbriteService.new
     genre_info = service.genre_data
-    binding.pry
     EventbriteSerializer.genres(genre_info)
   end
 end
