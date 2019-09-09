@@ -9,6 +9,7 @@ class TicketmasterSerializer
       }
       result_venue = result.venues.first.data
       obj[:venue] = {
+        name: result_venue['name'], 
         address: result_venue['address']['line1'],
         city: result_venue['city']['name'],
         state: result_venue['state']['name'],
