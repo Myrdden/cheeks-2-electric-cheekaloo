@@ -35,4 +35,19 @@ class EventbriteSerializer
     end
     json_array.to_json
   end
+
+  def self.genres(genre_info)
+    main_category = genre_info.find_all do |genre|
+      genre[:parent_category][:id] == '105'
+    end
+    json_genres = []
+    main_category.each do |genre|
+      obj = {
+        id: genre[:id],
+        name: genre[:name]
+      }
+    json_genres << obj
+    end
+    json_genres.to_json
+  end
 end
