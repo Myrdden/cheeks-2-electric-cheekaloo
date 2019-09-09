@@ -9,14 +9,6 @@ class EventbriteSerializer
         date: event[:start][:local].to_datetime,
         status: event[:status],
       }
-      obj[:venue] = {
-        name: venue_info[:name],
-        address: venue_info[:address][:address_1],
-        city: venue_info[:address][:city],
-        state: venue_info[:address][:region],
-        country: venue_info[:address][:country],
-        zip: venue_info[:address][:postal_code]
-      }
       if event[:subcategory_id] == '5001'
         obj[:genre] = 'Theatre'
       elsif event[:subcategory_id] == '5002'
@@ -26,6 +18,14 @@ class EventbriteSerializer
       else
         obj[:genre] = 'Arts'
       end
+      obj[:venue] = {
+        name: venue_info[:name],
+        address: venue_info[:address][:address_1],
+        city: venue_info[:address][:city],
+        state: venue_info[:address][:region],
+        country: venue_info[:address][:country],
+        zip: venue_info[:address][:postal_code]
+      }
       if ticket_info != nil
         obj[:maxPrice] = ticket_info
       else
