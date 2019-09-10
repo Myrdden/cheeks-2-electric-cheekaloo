@@ -12,7 +12,7 @@ class EventbriteService
     JSON.parse(resp.body, symbolize_names: true)[:events]
   end
 
-  def ticket_data
+  def get_tickets
     id = event_data[0][:id]
     resp = @connection.get("events/#{id}/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
@@ -21,7 +21,7 @@ class EventbriteService
     JSON.parse(resp.body, symbolize_names: true)[:ticket_classes][0][:cost]
   end
 
-  def venue_data
+  def get_venues
     id = event_data[0][:id]
     resp = @connection.get("events/#{id}/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
@@ -30,7 +30,7 @@ class EventbriteService
     JSON.parse(resp.body, symbolize_names: true)[:venue]
   end
 
-  def genre_data
+  def get_genres
     resp = @connection.get("subcategories/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
     end

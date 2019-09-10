@@ -21,14 +21,14 @@ class EventsFacade
       obj = {
         name: event['name'],
         url: event['url'],
-        genre: event['classifications'][0]['genre']['name'],
-        image_url: event['images'][0]['url'],
-        venue_name: event['_embedded']['venues'][0]['name'],
-        address: event['_embedded']['venues'][0]['address']['line1'],
-        city: event['_embedded']['venues'][0]['city']['name'],
-        state: event['_embedded']['venues'][0]['state']['name'],
-        zip: event['_embedded']['venues'][0]['postalCode'],
-        country: event['_embedded']['venues'][0]['country']['name'],
+        genre: event['classifications']['genre']['name'],
+        image_url: event['images']['url'],
+        venue_name: event['_embedded']['venues']['name'],
+        address: event['_embedded']['venues']['address']['line1'],
+        city: event['_embedded']['venues']['city']['name'],
+        state: event['_embedded']['venues']['state']['name'],
+        zip: event['_embedded']['venues']['postalCode'],
+        country: event['_embedded']['venues']['country']['name'],
         minPrice: event,
         maxPrice: event
         date: event,
@@ -40,16 +40,21 @@ class EventsFacade
     events_json_objects
   end
 
-  def eventbrite_events
-    event_data.map { |event| Event.new(event) }
-  end
+  # def eventbrite_events
+  #   event_data.map { |event| Event.new(event) }
+  # end
 
   def eventbrite_formatting
     events_json_objects = []
+    eventbrite_service = EventbriteService.new
+    eventbrite_events = eventbrite_service.get_events
+    eventbrite_venues = eventbrite_service.get_venues
+    eventbrite_tickets = eventbrtie_service.get_tickets
     eventbrite_events.each do |event|
       obj = {
         name: event[:name][:text],
         url: event[:url],
+        image_url: event[:logo][:original][:url]
       }
       if event[:subcategory_id] == '5001'
         obj[:genre] = 'Theatre'
@@ -61,21 +66,21 @@ class EventsFacade
         obj[:genre] = 'Arts'
       end
       obj[:venue] = {
-        name: venue_info[:name],
-        address: venue_info[:address][:address_1],
-        city: venue_info[:address][:city],
-        state: venue_info[:address][:region],
-        country: venue_info[:address][:country],
-        zip: venue_info[:address][:postal_code]
+        name: eventbrite_venues[:name],
+        address: eventbrite_venues[:address][:address_1],
+        city: eventbrite_venues[:address][:city],
+        state: eventbrite_venues[:address][:region],
+        country: eventbrite_venues[:address][:country],
+        zip: eventbrite_venues[:address][:postal_code]
       }
       if ticket_info != nil
         obj[:minPrice] = ticket_info
       else
-        obj[:maxPrice] = "Click link to find out more"
+        obj[:maxPrice] = nil
       end
       obj[:date] = {
         date: event[:start][:local].to_date,
-        time: event[:start][:local].to_,
+        time: event[:start][:local],
         status: event[:status]
       }
       events_json_objects << obj
@@ -83,13 +88,6 @@ class EventsFacade
     events_json_objects
   end
 end
-
-  # def eventbrite_event_data
-  #   binding.pry
-  #   eventbrite_service = EventbriteService.new
-  #   eventbrite_service.get_events
-  # end
-
 
 
   # def self.json(event_info, ticket_info, venue_info)
