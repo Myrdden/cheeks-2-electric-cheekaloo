@@ -54,7 +54,16 @@ class EventsFacade
       obj = {
         name: event[:name][:text],
         url: event[:url],
-        image_url: event[:logo][:original][:url]
+        image_url: event[:logo][:original][:url],
+        venue_name: eventbrite_venues[:name],
+        address: eventbrite_venues[:address][:address_1],
+        city: eventbrite_venues[:address][:city],
+        state: eventbrite_venues[:address][:region],
+        country: eventbrite_venues[:address][:country],
+        zip: eventbrite_venues[:address][:postal_code],
+        date: event[:start][:local].to_date,
+        time: event[:start][:local],
+        status: event[:status]
       }
       if event[:subcategory_id] == '5001'
         obj[:genre] = 'Theatre'
@@ -65,34 +74,16 @@ class EventsFacade
       else
         obj[:genre] = 'Arts'
       end
-      obj[:venue] = {
-        name: eventbrite_venues[:name],
-        address: eventbrite_venues[:address][:address_1],
-        city: eventbrite_venues[:address][:city],
-        state: eventbrite_venues[:address][:region],
-        country: eventbrite_venues[:address][:country],
-        zip: eventbrite_venues[:address][:postal_code]
-      }
-      if ticket_info != nil
-        obj[:minPrice] = ticket_info
+      if eventbrite_tickets != nil
+        obj[:minPrice] = eventbrite_tickets
       else
         obj[:maxPrice] = nil
       end
-      obj[:date] = {
-        date: event[:start][:local].to_date,
-        time: event[:start][:local],
-        status: event[:status]
-      }
       events_json_objects << obj
     end
     events_json_objects
   end
 end
-
-
-  # def self.json(event_info, ticket_info, venue_info)
-  #   json_array.to_json
-  # end
 
 
 
