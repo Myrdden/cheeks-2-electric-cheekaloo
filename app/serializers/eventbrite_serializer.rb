@@ -31,7 +31,7 @@ class EventbriteSerializer
       end
       obj[:date] = {
         date: event[:start][:local].to_date,
-        time: event[:start][:local].to_time,
+        time: event[:start][:local].to_,
         status: event[:status]
       }
       json_array << obj
