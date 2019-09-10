@@ -1,8 +1,8 @@
 class EventsController < Sinatra::Base
 
   get '/api/v1/events' do
-    facade = EventsFacade.new
-    render json: EventSerializer.new(facade)
+    # facade = EventsFacade.new
+    EventsSerializer.new
 
     #
     # service = EventbriteService.new

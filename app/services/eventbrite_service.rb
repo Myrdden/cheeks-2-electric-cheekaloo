@@ -4,7 +4,7 @@ class EventbriteService
     @connection = Faraday.new(url: "https://www.eventbriteapi.com/v3")
   end
 
-  def self.get_events
+  def get_events
     resp = @connection.get('events/search/') do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
       req.params['categories'] = '105'
@@ -12,7 +12,7 @@ class EventbriteService
     JSON.parse(resp.body, symbolize_names: true)[:events]
   end
 
-  def self.ticket_data
+  def ticket_data
     id = event_data[0][:id]
     resp = @connection.get("events/#{id}/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
@@ -21,7 +21,7 @@ class EventbriteService
     JSON.parse(resp.body, symbolize_names: true)[:ticket_classes][0][:cost]
   end
 
-  def self.venue_data
+  def venue_data
     id = event_data[0][:id]
     resp = @connection.get("events/#{id}/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
@@ -30,7 +30,7 @@ class EventbriteService
     JSON.parse(resp.body, symbolize_names: true)[:venue]
   end
 
-  def self.genre_data
+  def genre_data
     resp = @connection.get("subcategories/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
     end

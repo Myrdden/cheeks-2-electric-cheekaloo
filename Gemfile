@@ -1,4 +1,4 @@
-atomsource 'https://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'sinatra', require: 'sinatra/base'
 gem 'require_all'
