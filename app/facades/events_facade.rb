@@ -5,44 +5,43 @@ class EventsFacade
   end
 
   def all_events
-    binding.pry
-    ticketmaster_events_data
-    eventbrite_events_data
+    ticketmaster_events_data + eventbrite_events_data
   end
 
   def ticketmaster_events_data
-    ticketmaster_event_data.map { |data| Event.from_ticketmaster(data) }
+    ticketmaster_events.map { |data| Event.from_ticketmaster(data) }
   end
 
   def eventbrite_events_data
-    event_data.map { |data| Event.from_eventbrite(event_data, venue_data, ticket_data, genre_data) }
+    event_data.map { |data| Event.from_eventbrite(event_data, venue_data, ticket_data) }
   end
 
   private
-  def ticketmaster_event_data
+  def ticketmaster_events
     TicketmasterService.get_events
   end
 
+  def eventbrite_service
+    @eventbrite_service ||= EventbriteService.new
+  end
+
   def event_data
-    service = EventbriteService.new
-    service.get_events
+    eventbrite_service.get_events
+    binding.pry
   end
 
   def venue_data
-    service = EventbriteService.new
-    service.get_venues
+    eventbrite_service.get_venues
   end
 
   def ticket_data
-    service = EventbriteService.new
-    service.get_tickets
+    eventbrite_service.get_tickets
   end
 
-  def genre_data
-    service = EventbriteService.new
-    nonfiltered = service.get_genres
-    nonfiltered.find_all { |genre| genre[:parent_category][:id] == '105'}
-  end
+  # def genre_data
+  #   service = EventbriteService.new
+  #   service.get_genres
+  # end
 end
 
 #   def self.genres(genre_info)
