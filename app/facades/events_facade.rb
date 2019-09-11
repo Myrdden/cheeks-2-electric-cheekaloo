@@ -36,17 +36,9 @@ class EventsFacade
   def ticket_data
     eventbrite_service.get_tickets
   end
-
-  # def genre_data
-  #   service = EventbriteService.new
-  #   service.get_genres
-  # end
 end
 
 #   def self.genres(genre_info)
-#     main_category = genre_info.find_all do |genre|
-#       genre[:parent_category][:id] == '105'
-#     end
 #     json_genres = []
 #     main_category.each do |genre|
 #       obj = {
