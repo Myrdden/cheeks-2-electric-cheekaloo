@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'sinatra', require: 'sinatra/base'
+gem 'sinatra'
 gem 'require_all'
 gem 'fast_jsonapi'
 gem 'ticketmaster-sdk'

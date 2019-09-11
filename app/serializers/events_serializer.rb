@@ -1,6 +1,4 @@
-class EventsSerializer
-
-  def initialize(facade)
-    @events_data = facade
+  def initialize(events)
+    events.map! { |event| event.to_json }
   end
 end

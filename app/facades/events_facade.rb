@@ -1,39 +1,30 @@
 class EventsFacade
-
-  def initialize
-    @events = all_events
+  def self.all_events
+    ticketmaster_events_data + eventbrite_events_data
   end
 
-  def all_events
-    @_all_events ||= (ticketmaster_events_data + eventbrite_events_data)
+  def self.ticketmaster_events_data
+    ticketmaster_events.map { |data| Event.from_ticketmaster(data) }
   end
 
-  def ticketmaster_events_data
-    @_ticketmaster_events_data ||= ticketmaster_events.map { |data| Event.from_ticketmaster(data) }
-  end
-
-  def eventbrite_events_data
-    @_eventbrite_events_data ||= event_data.map { |data| Event.from_eventbrite(event_data, venue_data, ticket_data) }
+  def self.eventbrite_events_data
+    eventbrite_events.map { |event| Event.from_eventbrite(event, venues(event[:id]), tickets(event[:id])) }
   end
 
   private
-  def ticketmaster_events
+  def self.ticketmaster_events
     TicketmasterService.get_events
   end
 
-  def eventbrite_service
-    @_eventbrite_service ||= EventbriteService.new
+  def self.eventbrite_events
+    EventbriteService.get_events
   end
 
-  def event_data
-    eventbrite_service.get_events
+  def self.venues(id)
+    EventbriteService.get_venues(id)
   end
 
-  def venue_data
-    eventbrite_service.get_venues
-  end
-
-  def ticket_data
-    eventbrite_service.get_tickets
+  def self.tickets(id)
+    EventbriteService.get_tickets(id)
   end
 end
