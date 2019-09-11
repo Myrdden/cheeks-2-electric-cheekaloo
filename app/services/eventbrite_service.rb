@@ -13,7 +13,7 @@ class EventbriteService
   end
 
   def get_tickets
-    id = event_data[0][:id]
+    id = get_events[0][:id]
     resp = @connection.get("events/#{id}/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
       req.params['expand'] = "ticket_classes"
@@ -22,7 +22,7 @@ class EventbriteService
   end
 
   def get_venues
-    id = event_data[0][:id]
+    id = get_events[0][:id]
     resp = @connection.get("events/#{id}/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
       req.params['expand'] = "venue"

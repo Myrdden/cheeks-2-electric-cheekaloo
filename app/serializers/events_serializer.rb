@@ -1,6 +1,6 @@
 class EventsSerializer
 
-  def initialize
-    @facade = EventsFacade.new
+  def initialize(facade)
+    @events_data = facade
   end
 end

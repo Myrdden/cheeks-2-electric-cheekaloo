@@ -1,6 +1,6 @@
 # class TicketmasterSerializer
-  def self.json(response_array)
-    json_array = []
+  # def self.json(response_array)
+  #   json_array = []
     # response_array.each do |result|
     #   obj = {
     #     name: result.data['name'],
@@ -16,13 +16,13 @@
     #     country: result_venue['country']['name'],
     #     zip: result_venue['postalCode']
     #   }
-      dates = result.dates
-      obj[:date] = {
-        date: dates['start']['localDate'],
-        time: dates['start']['localTime'],
-        status: dates['status']['code']
-      }
-      json_array << obj
-
-
-    json_array.to_json
+    #   dates = result.dates
+    #   obj[:date] = {
+    #     date: dates['start']['localDate'],
+    #     time: dates['start']['localTime'],
+    #     status: dates['status']['code']
+    #   }
+    #   json_array << obj
+    #
+    #
+    # json_array.to_json
