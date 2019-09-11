@@ -37,15 +37,3 @@ class EventsFacade
     eventbrite_service.get_tickets
   end
 end
-
-#   def self.genres(genre_info)
-#     json_genres = []
-#     main_category.each do |genre|
-#       obj = {
-#         id: genre[:id],
-#         name: genre[:name]
-#       }
-#     json_genres << obj
-#     end
-#     json_genres.to_json
-#   end

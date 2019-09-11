@@ -68,23 +68,3 @@ class Event
     return new_event.to_json
   end
 end
-
-
-
-
-
-
-# event.name = event_data[0][:name][:text]
-# event.url = event[0][:url]
-# event.image_url = event[0][:logo][:original][:url]
-# event.venue_name = venue_data[:name]
-# event.address = venue_data[:address][:address_1]
-# event.city = venue_data[:address][:city]
-# event.state = venue_data[:address][:region]
-# event.zip = venue_data[:address][:postal_code]
-# event.country = venue_data[:address][:country]
-# event.date = event_data[0][:start][:local].to_date
-# event.time = event_data[0][:start][:local][11..15]
-# event.status = event_data[0][:status]
-# event.minPrice = ticket_data
-# event.maxPrice = nil

@@ -5,28 +5,21 @@ class GenresFacade
   end
 
   def all_genres
-    @_all_genres ||= (ticketmaster_genres_data + eventbrite_genres_data)
+    @_all_genres ||= genres_data
   end
 
-  def ticketmaster_genres_data
-    @_ticketmaster_genres_data ||= ticketmaster_genres.map { |data| Genre.from_ticketmaster(data) }
-  end
-
-  def eventbrite_genres_data
+  def genres_data
+    @_eventbrite_genres_data ||= eventbrite_genre_data.map { |data| Genre.from_eventbrite(data) }
   end
 
   private
-  def ticketmaster_genres
-    TicketmasterService.get_genres
-  end
 
   def eventbrite_service
     @_eventbrite_service ||= EventbriteService.new
   end
 
-  def genre_data
-    service = EventbriteService.new
-    genre_info = service.get_genres
+  def eventbrite_genre_data
+    genre_info = eventbrite_service.get_genres
     genre_info.find_all do |genre|
       genre[:parent_category][:id] == '105'
     end

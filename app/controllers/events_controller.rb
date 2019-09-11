@@ -6,7 +6,6 @@ class EventsController < Sinatra::Base
   end
 
   get '/api/v1/genres' do
-    # binding.pry
     facade = GenresFacade.new
     GenresSerializer.new(facade)
   end
