@@ -5,15 +5,15 @@ class EventsFacade
   end
 
   def all_events
-    ticketmaster_events_data + eventbrite_events_data
+    @_all_events ||= (ticketmaster_events_data + eventbrite_events_data)
   end
 
   def ticketmaster_events_data
-    ticketmaster_events.map { |data| Event.from_ticketmaster(data) }
+    @_ticketmaster_events_data ||= ticketmaster_events.map { |data| Event.from_ticketmaster(data) }
   end
 
   def eventbrite_events_data
-    event_data.map { |data| Event.from_eventbrite(event_data, venue_data, ticket_data) }
+    @_eventbrite_events_data ||= event_data.map { |data| Event.from_eventbrite(event_data, venue_data, ticket_data) }
   end
 
   private
@@ -22,12 +22,11 @@ class EventsFacade
   end
 
   def eventbrite_service
-    @eventbrite_service ||= EventbriteService.new
+    @_eventbrite_service ||= EventbriteService.new
   end
 
   def event_data
     eventbrite_service.get_events
-    binding.pry
   end
 
   def venue_data
