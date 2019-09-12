@@ -1,4 +1,5 @@
 class EventsFacade
+  
   def self.all_events
     ticketmaster_events_data + eventbrite_events_data
   end
