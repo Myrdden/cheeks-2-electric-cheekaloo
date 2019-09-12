@@ -13,13 +13,12 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
-ENV['RACK_ENV'] = 'test'
 require 'rack/test'
 require 'rspec'
 
 ENV['RACK_ENV'] = 'test'
 
-require File.expand_path '../../cheeks-in-seats.rb', __FILE__
+# require File.expand_path '../../cheeks-in-seats.rb', __FILE__
 
 module RSpecMixin
   include Rack::Test::Methods
@@ -29,7 +28,7 @@ end
 # For RSpec 2.x and 3.x
 RSpec.configure { |c| c.include RSpecMixin }
 # If you use RSpec 1.x you should use this instead:
-Spec::Runner.configure { |c| c.include RSpecMixin }
+# RSpec::Runner.configure { |c| c.include RSpecMixin }
 # require './events.json'
 # require './config.ru'
 RSpec.configure do |config|
@@ -37,6 +36,7 @@ RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+  config.include Rack::Test::Methods
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
