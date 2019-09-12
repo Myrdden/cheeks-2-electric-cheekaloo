@@ -1,10 +1,11 @@
 class Event
-  attr_accessor :name, :url, :genre, :image_url, :venue_name,
+  attr_accessor :id, :name, :url, :genre, :image_url, :venue_name,
                 :address, :city, :state, :zip, :country, :date,
                 :time, :status, :minPrice, :maxPrice
 
   def self.from_ticketmaster(data)
     event = Event.new
+    event.id = data.id
     event.name = data.name
     event.url = data.data['url']
     event.genre = data.classifications[0].data['genre']['name']
@@ -18,13 +19,17 @@ class Event
     event.date = data.start['localDate']
     event.time = data.start['localTime']
     event.status = data.dates['status']['code']
-    event.minPrice = data.data['priceRanges'][0]['min']
-    event.maxPrice = data.data['priceRanges'][0]['max']
+    if data.data['priceRanges'] == nil
+      event.minPrice && event.maxPrice = 'click link to find out more'
+    else
+      event.minPrice = data.data['priceRanges'][0]['min'] && event.maxPrice = data.data['priceRanges'][0]['max']
+    end
     return event
   end
 
   def self.from_eventbrite(event_data, venue_data, ticket_data)
     event = Event.new
+    event.id = event_data[:id]
     event.name = event_data[:name][:text]
     event.url = event_data[:url]
     event.image_url = event_data[:logo][:original][:url]
