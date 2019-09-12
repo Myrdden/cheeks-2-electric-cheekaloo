@@ -1,8 +1,7 @@
 class EventsController < Sinatra::Base
-
   get '/api/v1/events' do
-    facade = EventsFacade.new
-    EventsSerializer.new(facade)
+    events = EventsSerializer.json(EventsFacade.all_events)
+    binding.pry
   end
 
   get '/api/v1/genres' do

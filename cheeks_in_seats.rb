@@ -1,15 +1,11 @@
+ENV['SINATRA_ACTIVESUPPORT_WARNING'] = 'false'
 require 'bundler/setup'
 require 'sinatra/base'
 require './secretz.rb'
-require "rubygems"
-require "bundler"
-require './app/services/eventbrite_service.rb'
+require 'rubygems'
 
 Bundler.require(:default)
 Bundler.require(Sinatra::Base.environment)
-require 'active_support/deprecation'
-require 'active_support/all'
-
 
 ENV['SINATRA_ENV'] ||= 'development'
 ENV['TICKETMASTER-API-KEY'] = SECRET_TICKETMASTER
