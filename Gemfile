@@ -10,6 +10,8 @@ gem 'eventbrite'
 gem 'faraday'
 gem 'redis'
 gem 'hiredis'
+gem 'redis-sinatra'
+gem 'sidekiq'
 group :test do
   gem 'rspec'
   gem 'rack-test'
