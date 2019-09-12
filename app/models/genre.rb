@@ -6,6 +6,6 @@ class Genre
     genre = Genre.new
     genre.id = data[:id]
     genre.name = data[:name]
-    return genre.to_json
+    return genre
   end
 end

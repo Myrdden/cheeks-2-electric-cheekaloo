@@ -1,6 +1,6 @@
 class GenresSerializer
 
-  def initialize(facade)
-    @genres_data = facade
+  def self.json(genres)
+    genres.map { |genre| genre.to_json }
   end
 end
