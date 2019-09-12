@@ -23,8 +23,8 @@ class EventbriteService
     JSON.parse(resp.body, symbolize_names: true)[:venue]
   end
 
-  def get_genres
-    resp = Faraday.get("subcategories/") do |req|
+  def self.get_genres
+    resp = Faraday.get("https://www.eventbriteapi.com/v3/subcategories/") do |req|
       req.headers['Authorization'] = 'Bearer ' + ENV['EVENTBRITE-API-KEY']
     end
     JSON.parse(resp.body, symbolize_names: true)[:subcategories]

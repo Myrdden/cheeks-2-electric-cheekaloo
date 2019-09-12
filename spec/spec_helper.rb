@@ -18,7 +18,7 @@ require 'rspec'
 
 ENV['RACK_ENV'] = 'test'
 
-require File.expand_path '../../cheeks-in-seats.rb', __FILE__
+# require File.expand_path '../../cheeks-in-seats.rb', __FILE__
 
 module RSpecMixin
   include Rack::Test::Methods
@@ -28,7 +28,7 @@ end
 # For RSpec 2.x and 3.x
 RSpec.configure { |c| c.include RSpecMixin }
 # If you use RSpec 1.x you should use this instead:
-Spec::Runner.configure { |c| c.include RSpecMixin }
+# RSpec::Runner.configure { |c| c.include RSpecMixin }
 # require './events.json'
 # require './config.ru'
 RSpec.configure do |config|
