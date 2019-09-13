@@ -10,4 +10,8 @@ class RedisService
     end
     return resp
   end
+
+  def update(key)
+    @redis.set(key, yield)
+  end
 end

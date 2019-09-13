@@ -10,6 +10,8 @@ gem 'eventbrite'
 gem 'faraday'
 gem 'redis'
 gem 'hiredis'
+gem 'webmock'
+gem 'rake'
 group :test do
   gem 'rspec'
   gem 'rack-test'

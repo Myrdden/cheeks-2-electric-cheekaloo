@@ -1,28 +1,15 @@
 require 'spec_helper'
-require './cheeks_in_seats.rb'
 require 'rspec'
 require 'rack/test'
+require 'webmock'
 
 ENV['APP_ENV'] = 'test'
 
-describe "events index page" do
+RSpec.describe "events index page" do
   it 'I see all event data' do
-    get '/api/v1/events'
+    response = stub_events_api_call
+    str_response = response.to_s
 
-    expect(page).to have_content("ROOFTOP")
+    expect(str_response).to include("search")
   end
 end
-
-# RSpec.describe 'The HelloWorld App' do
-#   include Rack::Test::Methods
-#
-#   def app
-#     Sinatra::Application
-#   end
-#
-#   it "says hello" do
-#     get '/'
-#     expect(last_response).to be_ok
-#     expect(last_response.body).to eq('Hello World')
-#   end
-# end

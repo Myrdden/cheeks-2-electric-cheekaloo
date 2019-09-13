@@ -1,5 +1,5 @@
 class EventsSerializer
   def self.json(events)
-    events.to_json
+    events.map! { |event| event.to_json }
   end
 end

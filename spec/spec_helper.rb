@@ -15,6 +15,12 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rack/test'
 require 'rspec'
+require 'webmock'
+
+def stub_events_api_call
+  stubbed_events = File.open("./fixtures/events.json")
+  WebMock.stub_request(:get, "https://www.eventbriteapi.com/v3/events/search/").to_return(status:200, body:stubbed_events)
+end
 
 ENV['RACK_ENV'] = 'test'
 
@@ -22,7 +28,9 @@ ENV['RACK_ENV'] = 'test'
 
 module RSpecMixin
   include Rack::Test::Methods
-  def app() Sinatra::Application end
+  def app
+    described_class
+  end
 end
 
 # For RSpec 2.x and 3.x
