@@ -1,3 +1,4 @@
+desc 'heroku refresh caches call'
 task :refresh do
   redis = RedisService.new
   redis.fetchex('events', 1800) {
