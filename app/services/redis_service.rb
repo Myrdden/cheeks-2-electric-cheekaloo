@@ -1,6 +1,6 @@
 class RedisService
   def initialize
-    @redis = Redis.new(host: 'localhost')
+    @redis = Redis.new
   end
 
   def fetchex(key, expiry)
