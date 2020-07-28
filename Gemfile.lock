@@ -28,7 +28,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
-    json (2.2.0)
+    json (2.3.1)
     method_source (0.9.2)
     mime-types (3.3)
       mime-types-data (~> 3.2015)
@@ -46,6 +46,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rake (13.0.1)
     redis (4.1.2)
     require_all (2.0.0)
     rest-client (2.1.0)
@@ -99,6 +100,7 @@ DEPENDENCIES
   hiredis
   pry
   rack-test
+  rake
   redis
   require_all
   rspec
